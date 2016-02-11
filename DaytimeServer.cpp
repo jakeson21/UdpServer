@@ -30,10 +30,9 @@ int main()
 {
     try
     {
-        boost::asio::io_service io_service;
-        Comm::udp_server server(io_service);
+        Comm::udp_server server;
         server.listen_on("127.0.0.1", 4001);
-        io_service.run();
+        server.run();
     }
     catch (std::exception& e)
     {

@@ -35,8 +35,9 @@ namespace Comm
     public:
 
         /// Constructor
-        udp_server(boost::asio::io_service& io_service)
-        : mIoService(io_service),
+//        udp_server(boost::asio::io_service& io_service)
+        udp_server()
+        : mIoService(),
           mSocket()
 //          mSocket(io_service, boost::asio::ip::udp::endpoint(boost::asio::ip::address_v4::from_string(mIPAddressV4.c_str()), 4001))
 
@@ -44,7 +45,7 @@ namespace Comm
             setClassName("udp_server");
             Register("IPAddressV4", &this->mIPAddressV4, "");
             Register("Port", &this->mPort, "");
-
+            mIoService = new boost::asio::io_service;
 //            start_receive();
         }
 
@@ -59,10 +60,15 @@ namespace Comm
             }
             mIPAddressV4 = inIpAddress;
             mPort = inPort;
-            mSocket = new udp::socket(mIoService, boost::asio::ip::udp::endpoint(boost::asio::ip::address_v4::from_string(mIPAddressV4.c_str())/*udp::v4()*/, inPort));
+            mSocket = new udp::socket(*mIoService, boost::asio::ip::udp::endpoint(boost::asio::ip::address_v4::from_string(mIPAddressV4.c_str())/*udp::v4()*/, inPort));
             start_receive();
 
             std::cout << this->toXML() << std::endl;
+        }
+
+        virtual void run()
+        {
+            mIoService->run();
         }
 
         virtual void send_to(boost::shared_ptr<std::string> inMessage, int inPort){
@@ -90,12 +96,13 @@ namespace Comm
         }
 
         virtual void handle_receive(const boost::system::error_code& error,
-                std::size_t /*bytes_transferred*/)
+                std::size_t bytes_transferred)
         {
             if (!error || error == boost::asio::error::message_size)
             {
                 std::vector<char> data(recv_buffer_.begin(), recv_buffer_.end());
-                std::cout << "Received from " << mRemoteEndpoint.address().to_string()
+                std::cout << std::endl << "=========================================" << std::endl;
+                std::cout << "Received " << bytes_transferred << " bytes from " << mRemoteEndpoint.address().to_string()
                               << ":" << mRemoteEndpoint.port() << std::endl;
                 std::cout << &(data.front()) << std::endl;
 
@@ -109,7 +116,7 @@ namespace Comm
                                 boost::asio::placeholders::bytes_transferred,
                                 mRemoteEndpoint));
 
-                std::cout << "Listening again..." << std::endl << std::endl;
+                std::cout << "Listening again..." << std::endl;
                 start_receive();
             }
         }
@@ -125,7 +132,7 @@ namespace Comm
         xmls::xString mIPAddressV4;
         xmls::xInt mPort;
 
-        boost::asio::io_service& mIoService;
+        boost::asio::io_service* mIoService;
         udp::socket* mSocket;
         udp::endpoint mRemoteEndpoint;
         boost::array<char, buffer_size> recv_buffer_;

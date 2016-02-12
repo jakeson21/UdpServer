@@ -25,7 +25,7 @@
 
 using boost::asio::ip::udp;
 
-std::vector<int> generateRandomVector()
+std::vector<int> generateRandomVector(int inLength = 10)
 {
     // First create an instance of an engine.
     std::random_device rnd_device;
@@ -34,7 +34,7 @@ std::vector<int> generateRandomVector()
     uniform_int_distribution<int> dist(1, 52);
 
     auto gen = std::bind(dist, mersenne_engine);
-    std::vector<int> vec(10);
+    std::vector<int> vec(inLength);
     generate(begin(vec), end(vec), gen);
     return vec;
 }
@@ -67,7 +67,7 @@ class ApplicationSettings: public xmls::Serializable
 
 int main(int argc, char* argv[])
 {
-    std::vector<int> nums = generateRandomVector();
+    std::vector<int> nums = generateRandomVector(1024);
     std::string ipAddress;
     std::string port = "4001";
     try

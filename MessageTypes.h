@@ -22,7 +22,7 @@ namespace Comm
         float_double,
     };
 
-    std::string toString(const MESSAGE_TYPE type)
+    static std::string toString(const MESSAGE_TYPE type)
     {
         std::string str;
         switch(type)

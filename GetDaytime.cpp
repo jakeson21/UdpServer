@@ -123,11 +123,11 @@ int main(int argc, char* argv[])
         bytesSent += socket.send_to(boost::asio::buffer(nums), receiver_endpoint);
                 std::cout << bytesSent << " bytes sent\n";
 
-        boost::array<char, 1024> recv_buf;
-        udp::endpoint sender_endpoint;
-        size_t len = socket.receive_from(boost::asio::buffer(recv_buf), sender_endpoint);
-        std::cout << "Received: ";
-        std::cout.write(recv_buf.data(), len);
+//        boost::array<char, 1024> recv_buf;
+//        udp::endpoint sender_endpoint;
+//        size_t len = socket.receive_from(boost::asio::buffer(recv_buf), sender_endpoint);
+//        std::cout << "Received: ";
+//        std::cout.write(recv_buf.data(), len);
 
     }
     catch (std::exception& e)

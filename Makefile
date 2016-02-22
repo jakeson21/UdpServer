@@ -4,27 +4,28 @@ RM=\rm *.o GetDaytime DaytimeServer
 src =$(wildcard *.cpp)
 OBJS =$(src:.cpp=.o)
 
+# Library folders
+LIBB = /usr/lib ./lib /home/fuguru/git/xmls/lib /home/fuguru/git/tinyxml2/lib
+# Library header file folders
 LIBINCLUDE = /home/fuguru/git/xmls /home/fuguru/git/tinyxml2
 
-LIBB = /usr/lib /home/fuguru/git/xmls/lib /home/fuguru/git/tinyxml2/lib
 LDFLAGS = $(addprefix -L,$(LIBB))
-
-LIBS =-lxmls -ltinyxml2 -lboost_thread -lpthread -lboost_system 
+LIBS =-udpserver -lxmls -ltinyxml2 -lboost_thread -lpthread -lboost_system 
 
 # options I'll pass to the compiler.
-CXXFLAGS =-std=c++11 -c -static -Wall $(addprefix -I,$(LIBINCLUDE))
-DEBUG    =-std=c++11 -c -static -Wall -g $(addprefix -I,$(LIBINCLUDE))
+CXXFLAGS =-std=c++11 -m64 -static -Wall -c $(addprefix -I,$(LIBINCLUDE))
+DEBUG    =-std=c++11 -m64 -static -Wall -g -c $(addprefix -I,$(LIBINCLUDE))
 
-all: GetDaytime DaytimeServer
+all: lib GetDaytime DaytimeServer
 
 GetDaytime: GetDaytime.o
 	$(CC) $^ $(LDFLAGS) -o $@ $(LIBS)
 
-DaytimeServer: DaytimeServer.o
-	$(CC) $^ $(LDFLAGS) -o $@ $(LIBS)
-
 GetDaytime.o: GetDaytime.cpp
 	$(CC) $(CXXFLAGS) $^
+
+DaytimeServer: DaytimeServer.o
+	$(CC) $^ $(LDFLAGS) -o $@ $(LIBS)
 
 DaytimeServer.o: DaytimeServer.cpp
 	$(CC) $(CXXFLAGS) $^
@@ -32,6 +33,10 @@ DaytimeServer.o: DaytimeServer.cpp
 debug: CXXFLAGS=$(DEBUG)
 debug: all
 
-.PHONY: clean
+lib: udpserver.o
+	ar rvs lib/libudpserver.a udpserver.o
+	rm -f udpserver.o
+
+.PHONY: clean all lib debug
 clean:
-	rm -f $(OBJS) GetDaytime DaytimeServer
+	rm -f $(OBJS) GetDaytime DaytimeServer ./lib/*.a

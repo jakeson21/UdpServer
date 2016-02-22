@@ -30,9 +30,13 @@ int main()
 {
     try
     {
-        Comm::udp_server server;
+        Comm::UdpServer server;
         server.listen_on("127.0.0.1", 4001);
-        server.run();
+        server.Start();
+        while (server.getThreadShouldRun())
+        {
+            sleep(1);
+        }
     }
     catch (std::exception& e)
     {

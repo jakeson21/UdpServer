@@ -23,14 +23,37 @@
 #include <XMLSerialization.h>
 #include "daytimestring.hpp"
 #include "udpserver.hpp"
+#include "../GenericDelegateTest/GenericDelegate.h"
 
 using boost::asio::ip::udp;
 
+class ReceiveHandler
+{
+    public:
+        ReceiveHandler(){};
+        virtual ~ReceiveHandler(){};
+
+        void handle_receive(const boost::shared_ptr<std::vector<uint8_t> >& inData,
+                                       const boost::shared_ptr<udp::endpoint>& inEndpoint)
+        {
+            std::string receivedData;
+            BOOST_FOREACH(uint8_t byte, *inData)
+            {
+                receivedData.append(std::string(1, char(byte)));
+            }
+            std::cout << "Received from address=" << inEndpoint->address().to_string() << ":" << inEndpoint->port() << std::endl;
+            std::cout << receivedData << std::endl << std::endl;
+        }
+};
+
 int main()
 {
+    ReceiveHandler myHandler;
+    Comm::ReceiveCallbackSignature mMethodCallback(&myHandler, &ReceiveHandler::handle_receive);
+    Comm::UdpServer server(mMethodCallback);
+
     try
     {
-        Comm::UdpServer server;
         server.listen_on("127.0.0.1", 4001);
         server.Start();
         while (server.getThreadShouldRun())
@@ -45,3 +68,4 @@ int main()
 
     return 0;
 }
+

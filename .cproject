@@ -22,16 +22,14 @@
 							<tool id="cdt.managedbuild.tool.gnu.archiver.base.807507828" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.1653194536" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base">
 								<option id="gnu.cpp.compiler.option.include.paths.631571996" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/fuguru/git/tinyxml2"/>
-									<listOptionValue builtIn="false" value="/home/fuguru/git/xmls"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/GenericDelegateTest}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/xmls}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/tinyxml2}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.746386073" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.base.910818399" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base">
-								<option id="gnu.c.compiler.option.include.paths.398626793" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/fuguru/git/tinyxml2"/>
-									<listOptionValue builtIn="false" value="/home/fuguru/git/xmls"/>
-								</option>
+								<option id="gnu.c.compiler.option.include.paths.398626793" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.393098381" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.base.1741785730" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.base"/>
@@ -42,10 +40,7 @@
 								</inputType>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.base.1570813547" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.base">
-								<option id="gnu.both.asm.option.include.paths.1533732418" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/fuguru/git/tinyxml2"/>
-									<listOptionValue builtIn="false" value="/home/fuguru/git/xmls"/>
-								</option>
+								<option id="gnu.both.asm.option.include.paths.1533732418" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath"/>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1949642875" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
@@ -75,16 +70,14 @@
 							<tool id="cdt.managedbuild.tool.gnu.archiver.base.1733593111" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.993689913" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base">
 								<option id="gnu.cpp.compiler.option.include.paths.268758672" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/fuguru/git/tinyxml2"/>
-									<listOptionValue builtIn="false" value="/home/fuguru/git/xmls"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/GenericDelegateTest}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/tinyxml2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/xmls}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1381344390" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.base.1607300710" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base">
-								<option id="gnu.c.compiler.option.include.paths.237071770" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/fuguru/git/tinyxml2"/>
-									<listOptionValue builtIn="false" value="/home/fuguru/git/xmls"/>
-								</option>
+								<option id="gnu.c.compiler.option.include.paths.237071770" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath"/>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1230329362" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.base.1152449325" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.base"/>
@@ -95,10 +88,7 @@
 								</inputType>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.base.49168026" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.base">
-								<option id="gnu.both.asm.option.include.paths.791306116" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/home/fuguru/git/tinyxml2"/>
-									<listOptionValue builtIn="false" value="/home/fuguru/git/xmls"/>
-								</option>
+								<option id="gnu.both.asm.option.include.paths.791306116" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath"/>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.633816248" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
@@ -112,15 +102,6 @@
 		<project id="DaytimeUDP.null.2006050267" name="DaytimeUDP"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-	<storageModule moduleId="scannerConfiguration">
-		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.base.307289374;cdt.managedbuild.toolchain.gnu.base.307289374.828977444;cdt.managedbuild.tool.gnu.cpp.compiler.base.1653194536;cdt.managedbuild.tool.gnu.cpp.compiler.input.746386073">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.base.307289374;cdt.managedbuild.toolchain.gnu.base.307289374.828977444;cdt.managedbuild.tool.gnu.c.compiler.base.910818399;cdt.managedbuild.tool.gnu.c.compiler.input.393098381">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-	</storageModule>
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Default">
 			<resource resourceType="PROJECT" workspacePath="/DaytimeUDP"/>
@@ -132,4 +113,20 @@
 			<resource resourceType="PROJECT" workspacePath="/DaytimeUDP"/>
 		</configuration>
 	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.base.307289374.1750169563;cdt.managedbuild.toolchain.gnu.base.307289374.1750169563.;cdt.managedbuild.tool.gnu.cpp.compiler.base.993689913;cdt.managedbuild.tool.gnu.cpp.compiler.input.1381344390">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.base.307289374;cdt.managedbuild.toolchain.gnu.base.307289374.828977444;cdt.managedbuild.tool.gnu.c.compiler.base.910818399;cdt.managedbuild.tool.gnu.c.compiler.input.393098381">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.base.307289374.1750169563;cdt.managedbuild.toolchain.gnu.base.307289374.1750169563.;cdt.managedbuild.tool.gnu.c.compiler.base.1607300710;cdt.managedbuild.tool.gnu.c.compiler.input.1230329362">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.base.307289374;cdt.managedbuild.toolchain.gnu.base.307289374.828977444;cdt.managedbuild.tool.gnu.cpp.compiler.base.1653194536;cdt.managedbuild.tool.gnu.cpp.compiler.input.746386073">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

@@ -116,12 +116,15 @@ int main(int argc, char* argv[])
         //send_buf.assign('a');
         std::string send_buf(xmlData);
         int32_t bytesSent = 0;
+
         bytesSent += socket.send_to(boost::asio::buffer(send_buf), receiver_endpoint);
         std::cout << bytesSent << " bytes sent\n";
 
         bytesSent += socket.send_to(boost::asio::buffer(Comm::toString(Comm::float_double)), receiver_endpoint);
+        std::cout << bytesSent << " bytes sent\n";
+
         bytesSent += socket.send_to(boost::asio::buffer(nums), receiver_endpoint);
-                std::cout << bytesSent << " bytes sent\n";
+        std::cout << bytesSent << " bytes sent\n";
 
 //        boost::array<char, 1024> recv_buf;
 //        udp::endpoint sender_endpoint;

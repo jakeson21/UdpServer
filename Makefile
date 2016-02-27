@@ -12,9 +12,11 @@ LIBINCLUDE = /home/fuguru/git/xmls /home/fuguru/git/tinyxml2
 LDFLAGS = $(addprefix -L,$(LIBB))
 LIBS =-udpserver -lxmls -ltinyxml2 -lboost_thread -lpthread -lboost_system 
 
+HEADERS = 
+
 # options I'll pass to the compiler.
-CXXFLAGS =-std=c++11 -m64 -static -Wall -c $(addprefix -I,$(LIBINCLUDE))
-DEBUG    =-std=c++11 -m64 -static -Wall -g -c $(addprefix -I,$(LIBINCLUDE))
+CXXFLAGS =-std=c++11 -m64 -static -O0 -Wall -g -c $(addprefix -I,$(LIBINCLUDE))
+DEBUG    =-std=c++11 -m64 -static -O0 -Wall -g -c $(addprefix -I,$(LIBINCLUDE))
 
 all: lib GetDaytime DaytimeServer
 
@@ -22,13 +24,13 @@ GetDaytime: GetDaytime.o
 	$(CC) $^ $(LDFLAGS) -o $@ $(LIBS)
 
 GetDaytime.o: GetDaytime.cpp
-	$(CC) $(CXXFLAGS) $^
+	$(CC) $(CXXFLAGS) GetDaytime.cpp
 
 DaytimeServer: DaytimeServer.o
 	$(CC) $^ $(LDFLAGS) -o $@ $(LIBS)
 
 DaytimeServer.o: DaytimeServer.cpp
-	$(CC) $(CXXFLAGS) $^
+	$(CC) $(CXXFLAGS) DaytimeServer.cpp
 	
 debug: CXXFLAGS=$(DEBUG)
 debug: all

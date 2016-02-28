@@ -28,7 +28,7 @@
 #include "tinyxml2.h"
 #include "XMLSerialization.h"
 
-#include "../GenericDelegateTest/GenericDelegate.h"
+#include "../GenericDelegate/GenericDelegate.h"
 
 #define PRINT(X) std::cout << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ << ": " << (X) << std::endl;
 
@@ -40,7 +40,7 @@ namespace Comm
     // this typedef should match to function signature of what it will be used to call. This could be a different class then the one performing the callback.
     typedef Help::GenericDelegate<const boost::shared_ptr<std::vector<uint8_t> >&, const boost::shared_ptr<udp::endpoint>& > ReceiveCallbackSignature;
 
-    static const int buffer_size = 1024;
+    static const int buffer_size = 4096;
 
     enum ROLE{
         UNCONFIGURED,
@@ -139,15 +139,15 @@ namespace Comm
             std::cout << mSendRemoteEndpoint.address().to_string() << mSendRemoteEndpoint.port() << std::endl;
 
             mSendSocket = new udp::socket(mIoService);
-            mSendSocket->open(udp::v4());
-//            mSendSocket->open(udp::v4(), ec);
-//            if (ec)
-//            {
-//                // An error occurred.
-//                std::cout << "Caught error " << ec.value() << " " << ec.message() << std::endl;
-//                delete mSendSocket;
-//                mSendSocket = 0;
-//            }
+//            mSendSocket->open(udp::v4());
+            mSendSocket->open(udp::v4(), ec);
+            if (ec)
+            {
+                // An error occurred.
+                std::cout << "Caught error " << ec.value() << " " << ec.message() << std::endl;
+                delete mSendSocket;
+                mSendSocket = 0;
+            }
             mMyRole = ROLE::CLIENT;
 
             return mSendRemoteEndpoint;
@@ -156,16 +156,16 @@ namespace Comm
         virtual void Start()
         {
             mThreadShouldRun = true;
-
+            start_receive();
             boost::thread t(bind(&Comm::UdpServer::Run, this));
             mThread.swap(t);
 
-            start_receive();
+//            start_receive();
         }
 
         virtual void Stop()
         {
-            if (mReceiveSocket)
+            if (mReceiveSocket && mReceiveSocket->is_open())
             {
                 mReceiveSocket->close();
             }
@@ -241,6 +241,10 @@ namespace Comm
                 notify_packet_handler(data, ep);
 
                 start_receive();
+            }
+            else if (inError == boost::asio::error::operation_aborted)
+            {
+                PRINT("Receive operation aborted");
             }
             else
             {

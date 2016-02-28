@@ -23,7 +23,7 @@
 #include <XMLSerialization.h>
 #include "daytimestring.hpp"
 #include "udpserver.hpp"
-#include "../GenericDelegateTest/GenericDelegate.h"
+#include "../GenericDelegate/GenericDelegate.h"
 
 using boost::asio::ip::udp;
 

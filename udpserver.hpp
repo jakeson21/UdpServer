@@ -19,14 +19,14 @@
 #include <boost/asio.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/foreach.hpp>
-#include <boost/thread/thread.hpp>
+#include <boost/thread.hpp>
 #include <mutex>
 
 #include "MessageTypes.h"
 #include "daytimestring.hpp"
 
-#include "tinyxml2.h"
-#include "XMLSerialization.h"
+//#include "../tinyxml2/tinyxml2.h"
+//#include "../xmls/XMLSerialization.h"
 
 #include "../GenericDelegate/GenericDelegate.h"
 
@@ -49,7 +49,7 @@ namespace Comm
         CLIENTSERVER
     };
 
-    class UdpServer : public xmls::Serializable
+    class UdpServer //: public xmls::Serializable
     {
     public:
 
@@ -63,9 +63,9 @@ namespace Comm
           mThreadShouldRun(false),
           mReceiveCallbackIsDefined(false)
         {
-            setClassName("udp_server");
-            Register("IPAddressV4", &this->mIPAddressV4, "");
-            Register("Port", &this->mPort, "");
+//            setClassName("udp_server");
+//            Register("IPAddressV4", &this->mIPAddressV4, "");
+//            Register("Port", &this->mPort, "");
         }
 
 
@@ -80,9 +80,9 @@ namespace Comm
           mThreadShouldRun(false),
           mReceiveCallbackIsDefined(true)
         {
-            setClassName("udp_server");
-            Register("IPAddressV4", &this->mIPAddressV4, "");
-            Register("Port", &this->mPort, "");
+//            setClassName("udp_server");
+//            Register("IPAddressV4", &this->mIPAddressV4, "");
+//            Register("Port", &this->mPort, "");
         }
 
         /// Default destructor
@@ -123,7 +123,7 @@ namespace Comm
 
             boost::system::error_code ec;
             udp::resolver resolver(mIoService);
-            udp::resolver::query query(udp::v4(), mIPAddressV4.toString(), mPort.toString());
+            udp::resolver::query query(udp::v4(), mIPAddressV4, mPort);
             mSendRemoteEndpoint = *resolver.resolve(query, ec);
 
 //            udp::resolver::iterator iterator = resolver.resolve(query, ec);
@@ -157,7 +157,7 @@ namespace Comm
         {
             mThreadShouldRun = true;
             start_receive();
-            boost::thread t(bind(&Comm::UdpServer::Run, this));
+            boost::thread t(&Comm::UdpServer::Run, this);
             mThread.swap(t);
 
 //            start_receive();
@@ -289,8 +289,11 @@ namespace Comm
             std::cout << "Sent " << bytes << " bytes to " << endpoint.address().to_string() << ":" << endpoint.port() << std::endl;
         }
 
-        xmls::xString mIPAddressV4;
-        xmls::xInt mPort;
+//        xmls::xString mIPAddressV4;
+//        xmls::xInt mPort;
+
+        std::string mIPAddressV4;
+        std::string mPort;
 
         ROLE mMyRole;
 
